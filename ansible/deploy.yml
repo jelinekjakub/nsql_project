@@ -1,0 +1,20 @@
+- hosts: web
+  become: true
+  # Toto je hlavní playbook pro nasazení aplikace Flask s MongoDB
+  # Obsahuje instalaci Dockeru a spuštění kontejnerů pomocí Docker Compose
+
+  roles:
+    - docker # Instalace Dockeru a Docker Compose pluginu
+
+  tasks:
+    - name: Copy project to server
+      copy:
+        src: ../
+        dest: /opt/flask-app
+        # Poznámka: Tato operace zkopíruje celý aktuální adresář projektu na server
+
+    - name: Run docker compose
+      command: docker compose up -d
+      args:
+        chdir: /opt/flask-app
+        # Spustí kontejnery v pozadí (detach mód)
