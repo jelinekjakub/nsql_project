@@ -62,7 +62,7 @@ Tato metoda automatizuje instalaci Dockeru a nasazení celé aplikace na vzdále
 2.  Spusťte playbook:
     ```bash
     cd ansible
-    ansible-playbook -i inventory.ini deploy.yml
+    ansible-playbook -i inventory.ini deploy.yml -K
     ```
     *Poznámka: Playbook provede instalaci Dockeru, zkopíruje soubory aplikace do `/opt/flask-app` a spustí `docker compose up`.*
 
